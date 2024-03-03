@@ -1,0 +1,19 @@
+Package: SMRmix
+Type: Package
+Title: A Mixed Effect Similarity Matrix Regression Model (SMRmix) for Integrating Multiple Microbiome Datasets at Community Level
+Version: 0.1.0
+Description: This package provides implementation of SMRmix, which integrates heterogeneous microbiome datasets and tests the association between microbial composition and an outcome of interest.
+Imports: stats, harmonicmeanp, lme4, nlme, MASS, expm
+Suggests: rmarkdown, knitr, phyloseq, GUniFrac
+Author: Mengyu He
+Maintainer: Mengyu He <mhe44@emory.edu>
+URL: https://github.com/mengyu-he/SMRmix
+BugReports: https://github.com/mengyu-he/SMRmix
+LazyData: true
+License: GPL-2
+Encoding: UTF-8
+Depends: R (>= 2.10)
+VignetteBuilder: knitr
+Vignette: SMRmix_vignette.Rmd
+RoxygenNote: 7.2.1
+NeedsCompilation: no
