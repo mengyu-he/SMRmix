@@ -48,6 +48,7 @@ SMRmix = function(formula, data = NULL, Kernels, times = 2000, var.type = "diffe
   H0.r <- as.formula( paste("~",sub("\\).*", "", sub(".*\\(", "", temp[3])))  )
   temp[3] <- gsub('\\+\\s*\\(.*?\\)', '',  temp[3], perl=TRUE)
   H0.lm <- as.formula(paste(temp[2], temp[1], temp[3]))
+  y <- eval(parse(text=(all.vars(H0.lmer)[1])), envir = environment(H0.lmer))
   
   X1 = NULL
   tmp = unlist(strsplit( gsub("\\s", "",temp[3]), "\\+")[[1]])[-1]
@@ -77,7 +78,7 @@ SMRmix = function(formula, data = NULL, Kernels, times = 2000, var.type = "diffe
                         n.kernel = n.kernel, times = times, var.type = var.type)  
   }
   if (outcome == "binary") { 
-    p.ind = SMRmix.bi(H0.lm = H0.lm, H0.r = H0.r, data = data, Ks = Kernels,
+    p.ind = SMRmix.bi(H0.lmer = H0.lmer, data = data, Ks = Kernels,
                       n.sam = n.sam, n.study = n.study, y = y, X1 = X1,
                       n.kernel = n.kernel, times = times) 
   }

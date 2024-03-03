@@ -7,7 +7,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(example)
+#' @usage data("example_SMRmix")
 #'
 #' @keywords datasets
 #'
@@ -23,4 +23,4 @@
 #' translocation, and systemic inflammation in chronic HIV infection. The Journal 
 #' of infectious diseases, 211(1), 19–27. https://doi.org/10.1093/infdis/jiu409 
 #' 
-"example"
+"example_SMRmix"

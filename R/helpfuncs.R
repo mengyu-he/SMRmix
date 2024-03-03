@@ -65,13 +65,13 @@ SMRmix.cont = function(H0.lm, H0.r, data, Ks, n.sam, n.study, y, X1,
 
 
 # SMRmix for binary outcomes
-SMRmix.bi = function(H0.lm, H0.r, data, Ks, n.sam, n.study, y, X1,
+SMRmix.bi = function(H0.lmer, data, Ks, n.sam, n.study, y, X1,
                      n.kernel, times) {
   
   score = matrix(0, nrow = times, ncol = n.kernel)  #perturbed statistics
   true = rep(0, n.kernel)                           #test statistic
   
-  lme = glmer(formula.H0, family = binomial)
+  lme = glmer(H0.lmer, family = binomial)
   sigma2 = as.numeric(lme4::VarCorr(lme))
   fity = predict(lme, re.form =~ 0, type = "response")
   

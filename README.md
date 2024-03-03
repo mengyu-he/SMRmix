@@ -32,7 +32,8 @@ devtools::install_local("SMRmix_0.1.0.tar.gz", dependencies = TRUE)
 The example data can be directly loaded through 
 
 ```{r}
-data("example")
+data("example_SMRmix")
+attach(example_SMRmix)
 ```
 
 The example dataset is built upon two microbiome studies [1,2]. The sample sizes are 23, 20, respectively. The datasets consists of two objects:
