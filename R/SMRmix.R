@@ -72,12 +72,14 @@ SMRmix = function(formula, data = NULL, Kernels, times = 2000, var.type = "diffe
   
   
   if (outcome == "continuous") {  
-    p.ind = SMRmix.cont(H0.lm, H0.r, data, Kernels, n.sam, n.study, y, X1,
-                        n.kernel, times, var.type)  
+    p.ind = SMRmix.cont(H0.lm = H0.lm, H0.r = H0.r, data = data, Ks = Kernels, 
+                        n.sam = n.sam, n.study = n.study, y = y, X1 = X1,
+                        n.kernel = n.kernel, times = times, var.type = var.type)  
   }
   if (outcome == "binary") { 
-    p.ind = SMRmix.bi(H0.lm, H0.r, data, Kernels, n.sam, n.study, y, X1,
-                      n.kernel, times) 
+    p.ind = SMRmix.bi(H0.lm = H0.lm, H0.r = H0.r, data = data, Ks = Kernels,
+                      n.sam = n.sam, n.study = n.study, y = y, X1 = X1,
+                      n.kernel = n.kernel, times = times) 
   }
   
   if (length(p.ind) == 1) {
@@ -87,7 +89,7 @@ SMRmix = function(formula, data = NULL, Kernels, times = 2000, var.type = "diffe
   
   if (length(p.ind) > 1) {
     p.ind.pos = ifelse(p.ind == 0, 10^-8, p.ind)
-    p.hmp = p.hmp(p = p.ind.hmp, w = NULL, L = length(p.ind.hmp), 
+    p.hmp = p.hmp(p = p.ind.pos, w = NULL, L = length(p.ind.pos), 
                   w.sum.tolerance = 1e-6, multilevel = F)[1]
     
     p.omnibus = c(p.hmp)

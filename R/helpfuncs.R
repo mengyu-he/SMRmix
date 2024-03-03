@@ -1,7 +1,7 @@
 #' Help functions for SMRmix
 #' 
 #' @import expm
-#' @importFrom nlme lme
+#' @importFrom nlme lme varIdent
 #' @import MASS
 #' @importFrom lme4 glmer
 #' @import stats
@@ -42,7 +42,7 @@ SMRmix.cont = function(H0.lm, H0.r, data, Ks, n.sam, n.study, y, X1,
     weightk = lapply(Sk, FUN = function(Sk) {t(Sk)%*%invV} ) 
     mvcov = matrix(sigma2, n.sam[k], n.sam[k])
     diag(mvcov) = sigma2+delta2[k]
-    X1k = cbind(1, X1[(index - n.sam[k]+1):(index),])
+    X1k = cbind(1, X1[(index - n.sam[k]+1):(index),,drop = FALSE])
     Psqrt = sqrtm(mvcov)  - X1k%*% solve(t(X1k) %*% solve(mvcov) %*% X1k) %*% t(X1k) %*% solve(sqrtm(mvcov))
     
     for (m in 1:times) {
@@ -88,11 +88,11 @@ SMRmix.bi = function(H0.lm, H0.r, data, Ks, n.sam, n.study, y, X1,
     weightk = lapply(Sk, FUN = function(Sk) {t(Sk)%*%invV} ) 
     
     W = matrix(1, n.sam[k], n.sam[k])*sigma2 + diag(1/(fityk * (1-fityk)))
-    remove.col = which(apply(X1[(index - n.sam[k]+1):(index),], 2, function(x) length(unique(x))) == 1)
+    remove.col = which(apply(X1[(index - n.sam[k]+1):(index),,drop = FALSE], 2, function(x) length(unique(x))) == 1)
     if (length(remove.col) > 0) {
       X1k = X1[(index - n.sam[k]+1):(index), - remove.col, drop =FALSE]
     } else {
-      X1k = cbind(rep(1, n.sam[k]), X1[(index - n.sam[k]+1):(index),])
+      X1k = cbind(rep(1, n.sam[k]), X1[(index - n.sam[k]+1):(index),,drop = FALSE])
     }
     
     Psqrt = sqrtm(W)- X1k%*% chol2inv(chol(t(X1k) %*% solve(W) %*% X1k)) %*% t(X1k) %*% solve(sqrtm(W))
