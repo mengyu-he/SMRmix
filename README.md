@@ -54,7 +54,7 @@ where $\boldsymbol{M_{ik}}$ represents the microbiome profile for $i$-th subject
 SMRmix( formula =  HIV ~ 1 + Age + (1 | Study.id), Kernels = Kernels, outcome = "binary")
 ```
 
-### Continous outcome
+### Continuous outcome
 
 Suppose the outcome of interest is age, and the goal is to test the association between microbiome composition and age adjusting for HIV status,
 $$age_{ik}= \beta \cdot HIV_{ik}+ f(\boldsymbol{M_{ik}})+h_k,$$
